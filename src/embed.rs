@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize)]
 pub(crate) struct Embed {
@@ -6,18 +6,12 @@ pub(crate) struct Embed {
     pub kind: EmbedKind,
 }
 
-#[derive(Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 pub(crate) enum EmbedKind {
-    Snippet(EmbedSnippet),
+    Snippet { from: EmbedPoint, to: EmbedPoint },
 }
 
-#[derive(Deserialize)]
-pub(crate) struct EmbedSnippet {
-    pub from: EmbedPoint,
-    pub to: EmbedPoint,
-}
-
-#[derive(Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 pub(crate) enum EmbedPoint {
     Line(i32),
 }
@@ -26,6 +20,7 @@ pub(crate) enum EmbedPoint {
 pub(crate) struct EmbedProcessed {
     pub file: String,
     pub before: String,
-    pub content: String,
     pub after: String,
+    pub content: String,
+    pub kind: EmbedKind,
 }

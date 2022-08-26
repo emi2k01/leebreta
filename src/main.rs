@@ -1,7 +1,9 @@
+#![allow(unused)]
+
 use clap::Parser;
 
 mod embed;
-mod process;
+mod processor;
 
 #[derive(Debug, Parser)]
 struct CliArgs {
@@ -10,7 +12,8 @@ struct CliArgs {
     file: std::path::PathBuf,
 }
 
-fn main() -> anyhow::Result<()> {
+fn main() -> eyre::Result<()> {
+    color_eyre::install()?;
     let cli_args = CliArgs::parse();
 
     Ok(())
