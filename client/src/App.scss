@@ -1,0 +1,109 @@
+@use "_colors";
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,700;0,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+#root-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+}
+
+#content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 2rem 1rem 2rem;
+  color: var(--main-fg);
+
+  & > article {
+    width: 90ch;
+
+    & > h1 {
+      font-size: 2.25rem;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    & > p,
+    & > .codeblock {
+      margin-top: 1.2em;
+    }
+
+    & > .codeblock {
+      user-select: none;
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        background-color: var(--main-bg);
+        color: white;
+        padding: 0.25em 1em;
+        font-size: 0.85rem;
+
+        .file-info {
+          .file-icon {
+            color: white;
+          }
+
+          .filename {
+            margin-left: 0.5em;
+          }
+        }
+
+        .actions {
+          button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            & > * {
+              color: white;
+            }
+          }
+        }
+      }
+
+      .lines-container {
+        display: flex;
+        gap: 0.5rem;
+
+        .line-numbers a,
+        .line > * {
+          line-height: 1.5rem;
+          height: 1.5rem;
+        }
+
+        .line-numbers {
+          background-color: var(--main-bg);
+
+          a {
+            display: block;
+            text-align: right;
+            min-width: 6ch;
+            padding: 0 0.25em;
+            color: white;
+            text-decoration: none;
+            font-size: 0.85em;
+          }
+        }
+
+        .lines {
+          user-select: text;
+
+          .line > * {
+            font-family: monospace;
+            white-space: pre;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
